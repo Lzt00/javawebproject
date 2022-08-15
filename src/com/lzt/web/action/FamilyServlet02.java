@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -100,6 +101,8 @@ public class FamilyServlet02 extends HttpServlet {
      */
     private void doFmodify(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if(session!=null&&session.getAttribute("user")!=null){
         request.setCharacterEncoding("UTF-8");
         Connection conn=null;
         PreparedStatement ps =null;
@@ -122,6 +125,8 @@ public class FamilyServlet02 extends HttpServlet {
         }
         if(key==1){
             response.sendRedirect(""+contextPath+"/flist");
+        }}else {
+            response.sendRedirect(request.getContextPath());
         }
     }
 

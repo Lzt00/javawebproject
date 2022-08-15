@@ -31,6 +31,7 @@
 
 </head>
 <body>
+欢迎用户${sessionScope.user}!
     <h1>账单明细</h1>
     <table border="1px" align="center" width="50%" >
         <tr>

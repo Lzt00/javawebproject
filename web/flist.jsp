@@ -25,6 +25,7 @@ if(ok){
 </script>
 
 <body>
+欢迎用户${sessionScope.username}!
     <h1>家庭成员明细</h1>
     <table border="1px" align="center" width="50%">
         <tr>

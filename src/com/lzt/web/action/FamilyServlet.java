@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -30,17 +31,23 @@ public class FamilyServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String servletPath = request.getServletPath();
-        if("/clist".equals(servletPath)){
-            doList(request,response);
-        }else if("/cadd".equals(servletPath)){
-            doCadd(request,response);
-        }else if("/cmodify".equals(servletPath)){
-            doModify(request,response);
-        }else if("/cdetail".equals(servletPath)){
-            doCdetail(request,response);
-        }else if("/cdel".equals(servletPath)){
-            doDele(request,response);
+        HttpSession session = request.getSession(false);
+        String username = (String)session.getAttribute("user");
+        if(session!=null&&username!=null) {
+            String servletPath = request.getServletPath();
+            if ("/clist".equals(servletPath)) {
+                doList(request, response);
+            } else if ("/cadd".equals(servletPath)) {
+                doCadd(request, response);
+            } else if ("/cmodify".equals(servletPath)) {
+                doModify(request, response);
+            } else if ("/cdetail".equals(servletPath)) {
+                doCdetail(request, response);
+            } else if ("/cdel".equals(servletPath)) {
+                doDele(request, response);
+            }
+        }else {
+            response.sendRedirect(request.getContextPath());
         }
     }
 

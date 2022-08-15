@@ -15,9 +15,9 @@
 </head>
 <body>
     <h1>家庭消费记录系统</h1>
-    <form action="list.html">
-        用户名: <input type="text"><br><br>
-        密&nbsp;&nbsp;&nbsp;码: <input type="password">
+    <form action="${pageContext.request.contextPath}/login" method="post">
+        用户名: <input type="text" name="username"><br><br>
+        密&nbsp;&nbsp;&nbsp;码: <input type="password" name="password">
         <br><br>
         <input type="submit" value="登录">
     </form>
